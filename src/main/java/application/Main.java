@@ -2,6 +2,7 @@ package application;
 import java.sql.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -12,6 +13,8 @@ import model.entities.Seller;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {//TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+        Scanner sc = new Scanner(System.in);
+
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
         System.out.println("=== Test 1: seller findById ====");
@@ -42,5 +45,12 @@ public class Main {
         sellerDao.update(seller);
         System.out.println("Update Completed ");
 
+        System.out.println("\n === Test 6: seller delete ====");
+        System.out.println("Enter id to delete: ");
+        int id = sc.nextInt();
+        sellerDao.deleteById(id);
+        System.out.println("Deleted id = " + id);
+
+        sc.close();
     }
 }
